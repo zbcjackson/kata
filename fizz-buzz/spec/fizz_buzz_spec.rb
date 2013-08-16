@@ -37,4 +37,29 @@ describe "Fizz buzz" do
 	it "should print all numbers below 10" do
 		game.sequence(10).should == [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz"]
 	end
+	describe "prints Fizz for numbers containing 3" do 
+		it "should print Fizz for 13" do
+			game.sequence(13)[12].should == "Fizz"
+		end
+		it "should print Fizz for 23" do
+			game.sequence(23)[22].should == "Fizz"
+		end
+	end
+	describe "prints Buzz for numbers containing 5" do
+		it "should print Buzz for 52" do
+			game.sequence(52)[51].should == "Buzz"
+		end
+		it "should print Buzz for 56" do
+			game.sequence(56)[55].should == "Buzz"
+		end
+	end
+	describe "prints FizzBuzz for numbers containing 3 and 5" do
+		it "should print FizzBuzz for 35" do
+			game.sequence(35)[34].should == "FizzBuzz"
+		end
+		it "should print FizzBuzz for 53" do
+			game.sequence(53)[52].should == "FizzBuzz"
+		end
+
+	end
 end
