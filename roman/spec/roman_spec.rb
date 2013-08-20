@@ -28,8 +28,30 @@ describe "Roman" do
 	}.each do |number, expected|
 		it "should translate #{number} to #{expected}" do
 			roman = Roman.new
-			roman.translate(number).should == expected
+			roman.to_roman(number).should == expected
 		end
 	end
 	
+
+	{
+		"I" => 1,
+		"II" => 2,
+		"III" => 3,
+		"V" => 5,
+		"VI" => 6,
+		"VII" => 7,
+		"VIII" => 8,
+		"XVI" => 16,
+		"LXVII" => 67,
+		"CI" => 101,
+		"DCII" => 602,
+		"MDXI" => 1511,
+		"IV" => 4,
+		"MCMXCIX" => 1999
+	}.each do |romanString, expected|
+		it "should translate #{romanString} to #{expected}" do
+			roman = Roman.new
+			roman.to_arabic(romanString).should == expected
+		end
+	end
 end
