@@ -172,5 +172,29 @@ describe "Bank OCR" do
 				" _||_|  ||_| _|  | _||_   |"]
 			parser.checksum.should == 285
 		end
+
+		it "should be not valid for 000000001" do
+			parser = AccountParser.new [
+				" _  _  _  _  _  _  _  _    ",
+				"| || || || || || || || |  |",
+				"|_||_||_||_||_||_||_||_|  |"]
+			parser.valid?.should be_false
+		end
+
+		it "should be valid for 000000019" do
+			parser = AccountParser.new [
+				" _  _  _  _  _  _  _     _ ",
+				"| || || || || || || |  ||_|",
+				"|_||_||_||_||_||_||_|  | _|"]
+			parser.valid?.should be_true
+		end
+
+		it "should be valid for 000000094" do
+			parser = AccountParser.new [
+				" _  _  _  _  _  _  _  _    ",
+				"| || || || || || || ||_||_|",
+				"|_||_||_||_||_||_||_| _|  |"]
+			parser.valid?.should be_true
+		end
 	end
 end

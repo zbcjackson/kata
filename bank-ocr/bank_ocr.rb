@@ -46,6 +46,10 @@ class AccountParser
 		(1..9).reduce(0) {|result, i| result + account_number[9-i].to_i * i}
 	end
 
+	def valid?
+		checksum % 11 == 0
+	end
+
 	def get_digit digit_index
 		start = 3 * digit_index
 		range = start..(start+2)
