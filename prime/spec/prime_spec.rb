@@ -6,22 +6,26 @@ describe "Prime" do
 		it "should return empty for 1" do
 			prime.factors(1).should == []
 		end
-		describe "return itself for prime" do
-			it "should return 2 for 2" do
-				prime.factors(2).should == [2]
-			end
-			it "should return 3 for 3" do
-				prime.factors(3).should == [3]
-			end		
+		it "should return 2 for 2" do
+			prime.factors(2).should == [2]
 		end
-		it "should return 2 and 2 for 4" do 
+		it "should return 3 for 3" do
+			prime.factors(3).should == [3]
+		end
+		it "should return 2 and 2 for 4" do
 			prime.factors(4).should == [2, 2]
+		end
+		it "should return 2 and 3 for 6" do
+			prime.factors(6).should == [2, 3]
+		end
+		it "should return 3 and 3 for 9" do
+			prime.factors(9).should == [3, 3]
 		end
 		it "should return 2, 2 and 2 for 8" do
 			prime.factors(8).should == [2, 2, 2]
 		end
-		it "should return 3 and 3 for 9" do
-			prime.factors(9).should == [3, 3]
+		it "should return 2, 3, 5, 11 and 251 for 82830" do
+			prime.factors(82830).should == [2, 3, 5, 11, 251]
 		end
 	end
 end
