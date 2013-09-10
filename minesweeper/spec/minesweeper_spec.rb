@@ -37,5 +37,30 @@ describe "Minesweeper" do
 			"111"
 		]
 	end
-	
+	it "should show 2 if there is 2 mines nearby" do
+		game = Minesweeper.new [
+			".*.",
+			"...",
+			"*.."
+		]
+		game.hint.should == [
+			"1*1",
+			"221",
+			"*10"
+		]
+	end
+	it "should show the numbers of mines nearby" do
+		game = Minesweeper.new [
+			".*..",
+			"**..",
+			"*..*",
+			"..*."
+		]
+		game.hint.should == [
+			"3*20",
+			"**31",
+			"*43*",
+			"12*2"
+		]
+	end
 end
