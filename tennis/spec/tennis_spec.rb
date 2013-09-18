@@ -1,96 +1,85 @@
 require_relative '../tennis'
 
 describe "Tennis" do
-	let(:game) { Tennis.new }
-
-	def deuce
-		3.times {game.player1_win_one_ball}
-		3.times {game.player2_win_one_ball}
-	end
-
-	it "should score 0 - 0 when the game begins" do
-		game.score.should == "0 - 0"
-	end
-
-	it "should score 15 - 0 when player1 wins one ball" do
-		game.player1_win_one_ball
-		game.score.should == "15 - 0"
-	end
-
-	it "should score 30 - 0 when player1 wins two balls" do
-		2.times {game.player1_win_one_ball}
-		game.score.should == "30 - 0"
-	end
-
-	it "should score 40 - 0 when player1 wins three balls" do
-		3.times {game.player1_win_one_ball}
-		game.score.should == "40 - 0"
-	end
-
-	it "should end with player1 wins when player1 wins four balls" do
-		4.times {game.player1_win_one_ball}
-		game.score.should == "Player1 wins"
-	end
-
-	it "should score 0 - 15 when player2 wins one ball" do
-		game.player2_win_one_ball
-		game.score.should == "0 - 15"
-	end
-
-	it "should score 0 - 30 when player2 wins two balls" do
-		2.times {game.player2_win_one_ball}
-		game.score.should == "0 - 30"
-	end
-
-	it "should score 0 - 40 when player2 wins three balls" do
-		3.times {game.player2_win_one_ball}
-		game.score.should == "0 - 40"
-	end
-
-	it "should end with player2 wins when player2 wins four balls" do
-		4.times {game.player2_win_one_ball}
-		game.score.should == "Player2 wins"
-	end
-
-	it "should score 40 - 30 when player1 wins three balls and player2 wins two balls" do
-		3.times {game.player1_win_one_ball}
-		2.times {game.player2_win_one_ball}
-		game.score.should == "40 - 30"
-	end
-
-	it "should score 40 - 40 when in deuce that both player1 and player2 wins three balls" do
-		deuce
-		game.score.should == "40 - 40"
-	end
-
-	it "should score 45 - 40 when player1 wins one ball in deuce" do
-		deuce
-		game.player1_win_one_ball
-		game.score.should == "45 - 40"
-	end
-
-	it "should end with player1 wins when player1 wins two balls in deuce" do
-		deuce
-		2.times {game.player1_win_one_ball}
-		game.score.should == "Player1 wins"
-	end
-
-	it "should score 40 - 45 when player2 wins one ball in deuce" do
-		deuce
-		game.player2_win_one_ball
-		game.score.should == "40 - 45"
-	end
-
-	it "should end with player2 wins when player2 wins two balls in deuce" do
-		deuce
-		2.times {game.player2_win_one_ball}
-		game.score.should == "Player2 wins"
-	end
-
-	it "should end with 40 - 40 when both player1 and player2 wins one ball in deuce" do
-		deuce
-		game.player1_win_one_ball
-		game.player2_win_one_ball
-		game.score.should == "40 - 40"
+	describe "description" do
+		let(:game) {Tennis.new}
+		def deuce
+			3.times {game.player1_win}
+			3.times {game.player2_win}
+		end
+		it "should be love love at the beginning of the game" do
+			game.description.should == "love love"
+		end
+		it "should be fifteen love when player 1 wins a ball" do
+			game.player1_win
+			game.description.should == "fifteen love"
+		end
+		it "should be love fifteen when player 2 wins a ball" do
+			game.player2_win
+			game.description.should == "love fifteen"
+		end
+		it "should be fifteen fifteen when both player 1 and player 2 win a ball" do
+			game.player1_win
+			game.player2_win
+			game.description.should == "fifteen fifteen"
+		end
+		it "should be thirty thirty when both player 1 and player 2 win two balls" do
+			game.player1_win
+			game.player2_win
+			game.player1_win
+			game.player2_win
+			game.description.should == "thirty thirty"
+		end
+		it "should be forty thirty when player 1 win 3 balls and player2 win 2 balls" do
+			3.times {game.player1_win}
+			2.times {game.player2_win}
+			game.description.should == "forty thirty"
+		end
+		it "should be deuce when both player1 and player 2 win 3 balls" do
+			deuce
+			game.description.should == "deuce"
+		end
+		it "should be player1 advantage when player 1 wins a ball after deuce" do
+			deuce
+			game.player1_win
+			game.description.should == "player1 advantage"
+		end
+		it "should be player2 advantage when player 2 wins a ball after deuce" do
+			deuce
+			game.player2_win
+			game.description.should == "player2 advantage"
+		end
+		it "should be deuce when both player1 and player2 wins a ball after deuce" do
+			deuce
+			game.player1_win
+			game.player2_win
+			game.description.should == "deuce"
+		end
+		it "should be deuce when both player1 and player2 wins 2 balls after deuce" do
+			deuce
+			game.player1_win
+			game.player2_win
+			game.player1_win
+			game.player2_win
+			game.description.should == "deuce"
+		end
+		it "should be player1 wins when player1 wins 2 balls after deuce" do
+			deuce
+			2.times {game.player1_win}
+			game.description.should == "player1 wins"
+		end
+		it "should be player2 wins when player2 wins 2 balls after deuce" do
+			deuce
+			2.times {game.player2_win}
+			game.description.should == "player2 wins"
+		end
+		it "should be player1 wins when player1 wins 4 balls" do
+			4.times {game.player1_win}
+			game.description.should == "player1 wins"
+		end
+		it "should be player2 wins when player2 wins 4 balls" do
+			4.times {game.player2_win}
+			game.description.should == "player2 wins"
+		end
 	end
 end
