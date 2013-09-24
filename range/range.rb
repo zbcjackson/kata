@@ -9,4 +9,8 @@ class Range
     def contains number
         number >= @start && number <= @end
     end
+
+    def allPoints
+        (@start..@end).to_a
+    end
 end

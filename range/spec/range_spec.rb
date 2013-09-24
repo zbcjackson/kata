@@ -64,4 +64,22 @@ describe "Range" do
             range.contains(3).should be_false
         end
     end
+    describe "all points" do
+        it "should return 1 for [1,1]" do
+            range = Range.new "[1,1]"
+            range.allPoints.should == [1]
+        end
+        it "should return 2 for [2,2]" do
+            range = Range.new "[2,2]"
+            range.allPoints.should == [2]
+        end
+        it "should return 1, 2 for [1,2]" do
+            range = Range.new "[1,2]"
+            range.allPoints.should == [1,2]
+        end
+        it "should return 2, 3, 4, 5 for (1,6)" do
+            range = Range.new "(1,6)"
+            range.allPoints.should == [2, 3, 4, 5]
+        end
+    end
 end
